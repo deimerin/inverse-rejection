@@ -1770,13 +1770,56 @@ Transformada inversa y Método del rechazo</h1>
 
 <!-- rnb-text-begin -->
 <ol style="list-style-type: decimal">
-<li><p>Un par de dados balanceados serán lanzados de forma continua
-hasta que todos los posibles resultados 2,3, … 12 hayan ocurrido al
-menos una vez. Desarrolle un estudio de simulación para estimar el
-número esperado de lanzamientos que es necesario realizar para que se
-cumpla la condición</p></li>
-<li><p>Implemente dos métodos diferentes para generar la variable
-aleatoria X que tiene la probabilidad de masa <span class="math inline">\(p_j, j=5,6,..., 14\)</span> donde:</p></li>
+<li>Un par de dados balanceados serán lanzados de forma continua hasta
+que todos los posibles resultados 2,3, … 12 hayan ocurrido al menos una
+vez. Desarrolle un estudio de simulación para estimar el número esperado
+de lanzamientos que es necesario realizar para que se cumpla la
+condición</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFuemFfMmRhZG9zIDwtIGZ1bmN0aW9uKCl7XG4gIHUxIDwtIHJ1bmlmKDEpXG4gIGRhZG8xIDwtIGZsb29yKDYqdTEpKzFcbiAgXG4gIHUyIDwtIHJ1bmlmKDEpXG4gIGRhZG8yIDwtIGZsb29yKDYqdTIpKzFcbiAgXG4gIHJlc3VsdGFkbyA8LSBkYWRvMSArIGRhZG8yXG4gIHJldHVybihyZXN1bHRhZG8pXG59XG5cbmNvbnQ8LWMoKVxuXG5mb3IoaSBpbiAxOjEwMDAwKXtcbiAgZGFkb3M8LSBjKDIsMyw0LDUsNiw3LDgsOSwxMCwxMSwxMilcbiAgazwtMFxuICB3aGlsZShsZW5ndGgodikhPTApe1xuICAgIGs9aysxXG4gICAgdmFsb3I8LSBsYW56YV8yZGFkb3MoKVxuICAgIGlmKGlzLmVsZW1lbnQodmFsb3Isdikpe1xuICAgICAgXG4gICAgICB2PC1zZXRkaWZmKHYsIHZhbG9yKVxuICAgICAgXG4gICAgfVxuICB9XG4gIFxuICBjb250PC1jKGNhbnQsaylcbn1cblxuXG5wYXN0ZShcIkVuIHByb21lZGlvIGxvcyBsYW56YW1pZW50b3MgbmVjZXNhcmlvcyBwYXJhIHF1ZSBsYSBjb25kaWNpw7NuIHNlIGN1bXBsYSBzb246IFwiLG1lYW4oY29udCkpXG5gYGAifQ== -->
+<pre class="r"><code>lanza_2dados &lt;- function(){
+  u1 &lt;- runif(1)
+  dado1 &lt;- floor(6*u1)+1
+  
+  u2 &lt;- runif(1)
+  dado2 &lt;- floor(6*u2)+1
+  
+  resultado &lt;- dado1 + dado2
+  return(resultado)
+}
+
+cont&lt;-c()
+
+for(i in 1:10000){
+  dados&lt;- c(2,3,4,5,6,7,8,9,10,11,12)
+  k&lt;-0
+  while(length(v)!=0){
+    k=k+1
+    valor&lt;- lanza_2dados()
+    if(is.element(valor,v)){
+      
+      v&lt;-setdiff(v, valor)
+      
+    }
+  }
+  
+  cont&lt;-c(cant,k)
+}
+
+
+paste(&quot;En promedio los lanzamientos necesarios para que la condición se cumpla son: &quot;,mean(cont))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiRW4gcHJvbWVkaW8gbG9zIGxhbnphbWllbnRvcyBuZWNlc2FyaW9zIHBhcmEgcXVlIGxhIGNvbmRpY2nDs24gc2UgY3VtcGxhIHNvbjogIDYxLjMzODQ2NjE1MzM4NDdcIlxuIn0= -->
+<pre><code>[1] &quot;En promedio los lanzamientos necesarios para que la condición se cumpla son:  61.3384661533847&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="2" style="list-style-type: decimal">
+<li>Implemente dos métodos diferentes para generar la variable aleatoria
+X que tiene la probabilidad de masa <span class="math inline">\(p_j,
+j=5,6,..., 14\)</span> donde:</li>
 </ol>
 <p>// function missing</p>
 <ol start="3" style="list-style-type: decimal">
@@ -1830,6 +1873,8 @@ qplot(b)   </code></pre>
 <!-- rnb-plot-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>A partir de la gráfica los valores generados se comportan como una
+distribución normal partiendo de una distribución exponencial</p>
 <ol start="5" style="list-style-type: decimal">
 <li>Use el método del rechazo para encontrar una forma eficiente de
 generar una variable aleatoria que tenga función de densidad de
@@ -1838,7 +1883,7 @@ definida entre 0 e infinito.</li>
 </ol>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkdlbmVyYWNpw7NuIGRlIHZhcmlhYmxlcyBhbGVhdG9yaWFzIC0gVHJhbnNmb3JtYWRhIGludmVyc2EgeSBNw6l0b2RvIGRlbCByZWNoYXpvIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KMS4gVW4gcGFyIGRlIGRhZG9zIGJhbGFuY2VhZG9zIHNlcsOhbiBsYW56YWRvcyBkZSBmb3JtYSBjb250aW51YSBoYXN0YSBxdWUgdG9kb3MgbG9zIHBvc2libGVzIHJlc3VsdGFkb3MgMiwzLCAuLi4gMTIgaGF5YW4gb2N1cnJpZG8gYWwgbWVub3MgdW5hIHZlei4gRGVzYXJyb2xsZSB1biBlc3R1ZGlvIGRlIHNpbXVsYWNpw7NuIHBhcmEgZXN0aW1hciBlbCBuw7ptZXJvIGVzcGVyYWRvIGRlIGxhbnphbWllbnRvcyBxdWUgZXMgbmVjZXNhcmlvIHJlYWxpemFyIHBhcmEgcXVlIHNlIGN1bXBsYSBsYSBjb25kaWNpw7NuDQoNCjIuIEltcGxlbWVudGUgZG9zIG3DqXRvZG9zIGRpZmVyZW50ZXMgcGFyYSBnZW5lcmFyIGxhIHZhcmlhYmxlIGFsZWF0b3JpYSBYIHF1ZSB0aWVuZSBsYSBwcm9iYWJpbGlkYWQgZGUgbWFzYSAkcF9qLCBqPTUsNiwuLi4sIDE0JCBkb25kZToNCg0KDQovLyBmdW5jdGlvbiBtaXNzaW5nDQoNCg0KMy4gSW1wbGVtZW50ZSB1biBtw6l0b2RvIHBhcmEgZ2VuZXJhciB2YWxvcmVzIGFsZWF0b3Jpb3MgcXVlIHNpZ3VlbiBsYSBkaXN0cmlidWNpw7NuIGRlc2NyaXRhIHBvciBsYSBmdW5jacOzbiBkZSBkZW5zaWRhZCBkZSBwcm9iYWJpbGlkYWQgZih4KT1leC8oZeKIkjEpIHBhcmEgMOKJpHjiiaQxLg0KDQo0LiBJbXBsZW1lbnRlIGVsIG3DqXRvZG8gZGVzY3JpdG8gZW4gZWwgZWplbXBsbyA1RiBkZWwgbGlicm8gZGUgUm9zcywgcXVlIGVzdMOhIGJhc2FkbyBlbiBlbCBtw6l0b2RvIGRlbCByZWNoYXpvLCBwYXJhIGdlbmVyYXIgdW5hIHZhcmlhYmxlIGFsZWF0b3JpYSBjb24gZGlzdHJpYnVjacOzbiBub3JtYWwgYSBwYXJ0aXIgZGUgdW5hIGRpc3RyaWJ1Y2nDs24gZXhwb25lbmNpYWwNCg0KYGBge3J9DQoNCmxpYnJhcnkodGlkeXZlcnNlKQ0KDQpzaW1fZXhwX2JldGEgPC0gZnVuY3Rpb24oYmV0YSwgbiA9IDEwMDApIHsNCiAgLWJldGEgKiBsb2cocnVuaWYobikpDQp9DQoNCnNpbV9leHA8LSBmdW5jdGlvbihuID0gMTAwMCkgew0KICAtbG9nKHJ1bmlmKG4pKQ0KfQ0KDQpjb2NpZW50ZSA8LSBmdW5jdGlvbih4KXsNCiAgZXhwKCh4LTEpXigyKSAvIDIpDQp9DQoNCnNpbXVsYV9ub3JtYWwgPC0gZnVuY3Rpb24oKXsNCiAgYyA8LSBzcXJ0KDIqZXhwKDEpL3BpKQ0KICB4IDwtIHNpbV9leHAobiA9IDEpDQogIHUgPC0gcnVuaWYoMSkNCiAgd2hpbGUgKHUgPiBjb2NpZW50ZSh4KS9jKSB7DQogICAgdSA8LSBydW5pZigxKQ0KICAgIHggPC0gc2ltX2V4cF9iZXRhKDEsIG4gPSAxKQ0KICB9DQogIHogPC0gYWJzKHgpDQogIGlmICh1PD0wLjUpIHtaIDwtIHp9DQogIGVsc2Uge1ogPC0gLXp9IA0KfQ0KDQojIyBzaW11bGFjaW9uDQoNCmI8LSByZXJ1bigxMDAwLCBzaW11bGFfbm9ybWFsKCkpICU+JSBmbGF0dGVuX2RibCgpDQpxcGxvdChiKSAgIA0KYGBgICAgDQoNCg0KNS4gVXNlIGVsIG3DqXRvZG8gZGVsIHJlY2hhem8gcGFyYSBlbmNvbnRyYXIgdW5hIGZvcm1hIGVmaWNpZW50ZSBkZSBnZW5lcmFyIHVuYSB2YXJpYWJsZSBhbGVhdG9yaWEgcXVlIHRlbmdhIGZ1bmNpw7NuIGRlIGRlbnNpZGFkIGRlIHByb2JhYmlsaWRhZCBmKHgpPTEyKDEreCll4oiSeCwwPHg8aW5mLiBPYnNlcnZlIHF1ZSBsYSBmdW5jacOzbiBlc3RhIGRlZmluaWRhIGVudHJlIDAgZSBpbmZpbml0by4=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkdlbmVyYWNpw7NuIGRlIHZhcmlhYmxlcyBhbGVhdG9yaWFzIC0gVHJhbnNmb3JtYWRhIGludmVyc2EgeSBNw6l0b2RvIGRlbCByZWNoYXpvIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KMS4gVW4gcGFyIGRlIGRhZG9zIGJhbGFuY2VhZG9zIHNlcsOhbiBsYW56YWRvcyBkZSBmb3JtYSBjb250aW51YSBoYXN0YSBxdWUgdG9kb3MgbG9zIHBvc2libGVzIHJlc3VsdGFkb3MgMiwzLCAuLi4gMTIgaGF5YW4gb2N1cnJpZG8gYWwgbWVub3MgdW5hIHZlei4gRGVzYXJyb2xsZSB1biBlc3R1ZGlvIGRlIHNpbXVsYWNpw7NuIHBhcmEgZXN0aW1hciBlbCBuw7ptZXJvIGVzcGVyYWRvIGRlIGxhbnphbWllbnRvcyBxdWUgZXMgbmVjZXNhcmlvIHJlYWxpemFyIHBhcmEgcXVlIHNlIGN1bXBsYSBsYSBjb25kaWNpw7NuDQoNCg0KYGBge3J9DQpsYW56YV8yZGFkb3MgPC0gZnVuY3Rpb24oKXsNCiAgdTEgPC0gcnVuaWYoMSkNCiAgZGFkbzEgPC0gZmxvb3IoNip1MSkrMQ0KICANCiAgdTIgPC0gcnVuaWYoMSkNCiAgZGFkbzIgPC0gZmxvb3IoNip1MikrMQ0KICANCiAgcmVzdWx0YWRvIDwtIGRhZG8xICsgZGFkbzINCiAgcmV0dXJuKHJlc3VsdGFkbykNCn0NCg0KY29udGFkb3I8LWMoKQ0KDQpmb3IoaSBpbiAxOjEwMDAwKXsNCiAgZGFkb3M8LSBjKDIsMyw0LDUsNiw3LDgsOSwxMCwxMSwxMikNCiAgazwtMA0KICB3aGlsZShsZW5ndGgoZGFkb3MpIT0wKXsNCiAgICBrPWsrMQ0KICAgIHZhbG9yPC0gbGFuemFfMmRhZG9zKCkNCiAgICANCiAgICBpZihpcy5lbGVtZW50KHZhbG9yLGRhZG9zKSl7DQogICAgICB2PC1zZXRkaWZmKGRhZG9zLCB2YWxvcikNCiAgICB9DQogIH0NCiAgDQogIGNvbnRhZG9yPC1jKGNvbnRhZG9yLGspDQp9DQoNCg0KcGFzdGUoIkVuIHByb21lZGlvIGVsIG51bWVybyBlc3BlcmFkbyBkZSBsYW56YW1pZW50b3MgcXVlIGVzIG5lY2VzYXJpbyBwYXJhIHF1ZSBsYSBjb25kaWNpw7NuIHNlIGN1bXBsYSBlczogIixtZWFuKGNvbnRhZG9yKSkNCg0KYGBgDQoNCjIuIEltcGxlbWVudGUgZG9zIG3DqXRvZG9zIGRpZmVyZW50ZXMgcGFyYSBnZW5lcmFyIGxhIHZhcmlhYmxlIGFsZWF0b3JpYSBYIHF1ZSB0aWVuZSBsYSBwcm9iYWJpbGlkYWQgZGUgbWFzYSAkcF9qLCBqPTUsNiwuLi4sIDE0JCBkb25kZToNCg0KDQovLyBmdW5jdGlvbiBtaXNzaW5nDQoNCg0KMy4gSW1wbGVtZW50ZSB1biBtw6l0b2RvIHBhcmEgZ2VuZXJhciB2YWxvcmVzIGFsZWF0b3Jpb3MgcXVlIHNpZ3VlbiBsYSBkaXN0cmlidWNpw7NuIGRlc2NyaXRhIHBvciBsYSBmdW5jacOzbiBkZSBkZW5zaWRhZCBkZSBwcm9iYWJpbGlkYWQgZih4KT1leC8oZeKIkjEpIHBhcmEgMOKJpHjiiaQxLg0KDQo0LiBJbXBsZW1lbnRlIGVsIG3DqXRvZG8gZGVzY3JpdG8gZW4gZWwgZWplbXBsbyA1RiBkZWwgbGlicm8gZGUgUm9zcywgcXVlIGVzdMOhIGJhc2FkbyBlbiBlbCBtw6l0b2RvIGRlbCByZWNoYXpvLCBwYXJhIGdlbmVyYXIgdW5hIHZhcmlhYmxlIGFsZWF0b3JpYSBjb24gZGlzdHJpYnVjacOzbiBub3JtYWwgYSBwYXJ0aXIgZGUgdW5hIGRpc3RyaWJ1Y2nDs24gZXhwb25lbmNpYWwNCg0KYGBge3J9DQoNCmxpYnJhcnkodGlkeXZlcnNlKQ0KDQpzaW1fZXhwX2JldGEgPC0gZnVuY3Rpb24oYmV0YSwgbiA9IDEwMDApIHsNCiAgLWJldGEgKiBsb2cocnVuaWYobikpDQp9DQoNCnNpbV9leHA8LSBmdW5jdGlvbihuID0gMTAwMCkgew0KICAtbG9nKHJ1bmlmKG4pKQ0KfQ0KDQpjb2NpZW50ZSA8LSBmdW5jdGlvbih4KXsNCiAgZXhwKCh4LTEpXigyKSAvIDIpDQp9DQoNCnNpbXVsYV9ub3JtYWwgPC0gZnVuY3Rpb24oKXsNCiAgYyA8LSBzcXJ0KDIqZXhwKDEpL3BpKQ0KICB4IDwtIHNpbV9leHAobiA9IDEpDQogIHUgPC0gcnVuaWYoMSkNCiAgd2hpbGUgKHUgPiBjb2NpZW50ZSh4KS9jKSB7DQogICAgdSA8LSBydW5pZigxKQ0KICAgIHggPC0gc2ltX2V4cF9iZXRhKDEsIG4gPSAxKQ0KICB9DQogIHogPC0gYWJzKHgpDQogIGlmICh1PD0wLjUpIHtaIDwtIHp9DQogIGVsc2Uge1ogPC0gLXp9IA0KfQ0KDQojIyBzaW11bGFjaW9uDQoNCmI8LSByZXJ1bigxMDAwLCBzaW11bGFfbm9ybWFsKCkpICU+JSBmbGF0dGVuX2RibCgpDQpxcGxvdChiKSAgIA0KYGBgICAgDQpBIHBhcnRpciBkZSBsYSBncsOhZmljYSBsb3MgdmFsb3JlcyBnZW5lcmFkb3Mgc2UgY29tcG9ydGFuIGNvbW8gdW5hIGRpc3RyaWJ1Y2nDs24gbm9ybWFsIHBhcnRpZW5kbyBkZSB1bmEgZGlzdHJpYnVjacOzbiBleHBvbmVuY2lhbCAgDQoNCjUuIFVzZSBlbCBtw6l0b2RvIGRlbCByZWNoYXpvIHBhcmEgZW5jb250cmFyIHVuYSBmb3JtYSBlZmljaWVudGUgZGUgZ2VuZXJhciB1bmEgdmFyaWFibGUgYWxlYXRvcmlhIHF1ZSB0ZW5nYSBmdW5jacOzbiBkZSBkZW5zaWRhZCBkZSBwcm9iYWJpbGlkYWQgZih4KT0xMigxK3gpZeKIkngsMDx4PGluZi4gT2JzZXJ2ZSBxdWUgbGEgZnVuY2nDs24gZXN0YSBkZWZpbmlkYSBlbnRyZSAwIGUgaW5maW5pdG8uDQoNCg0KDQoNCg0KDQoNCg==</div>
 
 
 

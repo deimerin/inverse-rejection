@@ -5,6 +5,41 @@ output: html_notebook
 
 1. Un par de dados balanceados serán lanzados de forma continua hasta que todos los posibles resultados 2,3, ... 12 hayan ocurrido al menos una vez. Desarrolle un estudio de simulación para estimar el número esperado de lanzamientos que es necesario realizar para que se cumpla la condición
 
+
+```{r}
+lanza_2dados <- function(){
+  u1 <- runif(1)
+  dado1 <- floor(6*u1)+1
+  
+  u2 <- runif(1)
+  dado2 <- floor(6*u2)+1
+  
+  resultado <- dado1 + dado2
+  return(resultado)
+}
+
+contador<-c()
+
+for(i in 1:10000){
+  dados<- c(2,3,4,5,6,7,8,9,10,11,12)
+  k<-0
+  while(length(dados)!=0){
+    k=k+1
+    valor<- lanza_2dados()
+    
+    if(is.element(valor,dados)){
+      v<-setdiff(dados, valor)
+    }
+  }
+  
+  contador<-c(contador,k)
+}
+
+
+paste("En promedio el numero esperado de lanzamientos que es necesario para que la condición se cumpla es: ",mean(contador))
+
+```
+
 2. Implemente dos métodos diferentes para generar la variable aleatoria X que tiene la probabilidad de masa $p_j, j=5,6,..., 14$ donde:
 
 
@@ -49,6 +84,13 @@ simula_normal <- function(){
 b<- rerun(1000, simula_normal()) %>% flatten_dbl()
 qplot(b)   
 ```   
-
+A partir de la gráfica los valores generados se comportan como una distribución normal partiendo de una distribución exponencial  
 
 5. Use el método del rechazo para encontrar una forma eficiente de generar una variable aleatoria que tenga función de densidad de probabilidad f(x)=12(1+x)e−x,0<x<inf. Observe que la función esta definida entre 0 e infinito.
+
+
+
+
+
+
+
