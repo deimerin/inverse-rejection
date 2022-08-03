@@ -30,7 +30,7 @@ Utilizando el metodo de la tranformada inversa con la funcion de densidad $f(x)$
 
 $F(U) = e^x / (e - 1) \\$
 
-$F^{-1}(U) = ln(U(e - 1)$
+$F^{-1}(U) = ln(U(e - 1))$
 
 Con esta funcion generamos 10000 muestras que siguen la funcion de densidad dada.
 
