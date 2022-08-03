@@ -12,13 +12,38 @@ output: html_notebook
 
 2. Implemente dos métodos diferentes para generar la variable aleatoria X que tiene la probabilidad de masa $p_j, j=5,6,..., 14$ donde:
 
-// function missing
-
-3. Implemente un método para generar valores aleatorios que siguen la distribución descrita por la función de densidad de probabilidad f(x)=ex/(e−1) para 0≤x≤1.
+$p_{j} = 
+\begin{cases}
+  0.11 & \text{when $j$ is odd and $5$$\le$$j$$\le$$13$}\\
+  0.09 & \text{when $f$ is even and $6$$\le$$j$$\le$$14$}
+\end{cases}$
 
 ```{r}
-n <- 1000
 
+```
+
+
+3. Implemente un método para generar valores aleatorios que siguen la distribución descrita por la función de densidad de probabilidad $f(x)=e^x/(e−1)$ para $0$$\le$$x$$\le$$1$.
+
+
+Utilizando el metodo de la tranformada inversa con la funcion de densidad $f(x)$ obtenemos la funcion $F^{-1}(U)$
+
+$F(U) = e^x / (e - 1) \\$
+
+$F^{-1}(U) = ln(U(e - 1)$
+
+Con esta funcion generamos 10000 muestras que siguen la funcion de densidad dada.
+
+```{r}
+n <- 10000
+sample <- vector(length = n)
+
+for (i in 1:n){
+  u <-runif(1)
+  sample[i] <- log(u*(exp(1) - 1))
+}
+
+hist(sample)
 
 ```
 
@@ -27,7 +52,7 @@ n <- 1000
 
 ```{r}
 
-library(tidyverse)
+library(ggplot2)
 
 sim_exp_beta <- function(beta, n = 1000) {
   -beta * log(runif(n))
@@ -62,3 +87,8 @@ qplot(b)
 
 
 5. Use el método del rechazo para encontrar una forma eficiente de generar una variable aleatoria que tenga función de densidad de probabilidad f(x)=12(1+x)e−x,0<x<inf. Observe que la función esta definida entre 0 e infinito.
+
+```{r}
+
+```
+
