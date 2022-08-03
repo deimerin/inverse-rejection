@@ -220,18 +220,34 @@ pre code {
 
 <!-- rnb-text-begin -->
 <ol style="list-style-type: decimal">
-<li><p>Un par de dados balanceados serán lanzados de forma continua hasta que todos los posibles resultados 2,3, … 12 hayan ocurrido al menos una vez. Desarrolle un estudio de simulación para estimar el número esperado de lanzamientos que es necesario realizar para que se cumpla la condición</p></li>
-<li><p>Implemente dos métodos diferentes para generar la variable aleatoria X que tiene la probabilidad de masa <span class="math inline">\(p_j, j=5,6,..., 14\)</span> donde:</p></li>
+<li>Un par de dados balanceados serán lanzados de forma continua hasta que todos los posibles resultados 2,3, … 12 hayan ocurrido al menos una vez. Desarrolle un estudio de simulación para estimar el número esperado de lanzamientos que es necesario realizar para que se cumpla la condición.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="2" style="list-style-type: decimal">
+<li>Implemente dos métodos diferentes para generar la variable aleatoria X que tiene la probabilidad de masa <span class="math inline">\(p_j, j=5,6,..., 14\)</span> donde:</li>
 </ol>
 <p>// function missing</p>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Implemente un método para generar valores aleatorios que siguen la distribución descrita por la función de densidad de probabilidad f(x)=ex/(e−1) para 0≤x≤1.</p></li>
+<li>Implemente un método para generar valores aleatorios que siguen la distribución descrita por la función de densidad de probabilidad f(x)=ex/(e−1) para 0≤x≤1.</li>
+</ol>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubiA8LSAxMDAwXG5cblxuYGBgIn0= -->
+<pre class="r"><code>n &lt;- 1000
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<ol start="4" style="list-style-type: decimal">
 <li><p>Implemente el método descrito en el ejemplo 5F del libro de Ross, que está basado en el método del rechazo, para generar una variable aleatoria con distribución normal a partir de una distribución exponencial</p></li>
 <li><p>Use el método del rechazo para encontrar una forma eficiente de generar una variable aleatoria que tenga función de densidad de probabilidad f(x)=12(1+x)e−x,0&lt;x&lt;inf. Observe que la función esta definida entre 0 e infinito.</p></li>
 </ol>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiR2VuZXJhY2nDs24gZGUgdmFyaWFibGVzIGFsZWF0b3JpYXMgLSBUcmFuc2Zvcm1hZGEgaW52ZXJzYSB5IE3DqXRvZG8gZGVsIHJlY2hhem8iCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCjEuIFVuIHBhciBkZSBkYWRvcyBiYWxhbmNlYWRvcyBzZXLDoW4gbGFuemFkb3MgZGUgZm9ybWEgY29udGludWEgaGFzdGEgcXVlIHRvZG9zIGxvcyBwb3NpYmxlcyByZXN1bHRhZG9zIDIsMywgLi4uIDEyIGhheWFuIG9jdXJyaWRvIGFsIG1lbm9zIHVuYSB2ZXouIERlc2Fycm9sbGUgdW4gZXN0dWRpbyBkZSBzaW11bGFjacOzbiBwYXJhIGVzdGltYXIgZWwgbsO6bWVybyBlc3BlcmFkbyBkZSBsYW56YW1pZW50b3MgcXVlIGVzIG5lY2VzYXJpbyByZWFsaXphciBwYXJhIHF1ZSBzZSBjdW1wbGEgbGEgY29uZGljacOzbgoKMi4gSW1wbGVtZW50ZSBkb3MgbcOpdG9kb3MgZGlmZXJlbnRlcyBwYXJhIGdlbmVyYXIgbGEgdmFyaWFibGUgYWxlYXRvcmlhIFggcXVlIHRpZW5lIGxhIHByb2JhYmlsaWRhZCBkZSBtYXNhICRwX2osIGo9NSw2LC4uLiwgMTQkIGRvbmRlOgoKCi8vIGZ1bmN0aW9uIG1pc3NpbmcKCgozLiBJbXBsZW1lbnRlIHVuIG3DqXRvZG8gcGFyYSBnZW5lcmFyIHZhbG9yZXMgYWxlYXRvcmlvcyBxdWUgc2lndWVuIGxhIGRpc3RyaWJ1Y2nDs24gZGVzY3JpdGEgcG9yIGxhIGZ1bmNpw7NuIGRlIGRlbnNpZGFkIGRlIHByb2JhYmlsaWRhZCBmKHgpPWV4Lyhl4oiSMSkgcGFyYSAw4omkeOKJpDEuCgo0LiBJbXBsZW1lbnRlIGVsIG3DqXRvZG8gZGVzY3JpdG8gZW4gZWwgZWplbXBsbyA1RiBkZWwgbGlicm8gZGUgUm9zcywgcXVlIGVzdMOhIGJhc2FkbyBlbiBlbCBtw6l0b2RvIGRlbCByZWNoYXpvLCBwYXJhIGdlbmVyYXIgdW5hIHZhcmlhYmxlIGFsZWF0b3JpYSBjb24gZGlzdHJpYnVjacOzbiBub3JtYWwgYSBwYXJ0aXIgZGUgdW5hIGRpc3RyaWJ1Y2nDs24gZXhwb25lbmNpYWwKCjUuIFVzZSBlbCBtw6l0b2RvIGRlbCByZWNoYXpvIHBhcmEgZW5jb250cmFyIHVuYSBmb3JtYSBlZmljaWVudGUgZGUgZ2VuZXJhciB1bmEgdmFyaWFibGUgYWxlYXRvcmlhIHF1ZSB0ZW5nYSBmdW5jacOzbiBkZSBkZW5zaWRhZCBkZSBwcm9iYWJpbGlkYWQgZih4KT0xMigxK3gpZeKIkngsMDx4PGluZi4gT2JzZXJ2ZSBxdWUgbGEgZnVuY2nDs24gZXN0YSBkZWZpbmlkYSBlbnRyZSAwIGUgaW5maW5pdG8u</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiR2VuZXJhY2nDs24gZGUgdmFyaWFibGVzIGFsZWF0b3JpYXMgLSBUcmFuc2Zvcm1hZGEgaW52ZXJzYSB5IE3DqXRvZG8gZGVsIHJlY2hhem8iCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCjEuIFVuIHBhciBkZSBkYWRvcyBiYWxhbmNlYWRvcyBzZXLDoW4gbGFuemFkb3MgZGUgZm9ybWEgY29udGludWEgaGFzdGEgcXVlIHRvZG9zIGxvcyBwb3NpYmxlcyByZXN1bHRhZG9zIDIsMywgLi4uIDEyIGhheWFuIG9jdXJyaWRvIGFsIG1lbm9zIHVuYSB2ZXouIERlc2Fycm9sbGUgdW4gZXN0dWRpbyBkZSBzaW11bGFjacOzbiBwYXJhIGVzdGltYXIgZWwgbsO6bWVybyBlc3BlcmFkbyBkZSBsYW56YW1pZW50b3MgcXVlIGVzIG5lY2VzYXJpbyByZWFsaXphciBwYXJhIHF1ZSBzZSBjdW1wbGEgbGEgY29uZGljacOzbi4KCmBgYHtyfQoKYGBgCgoKMi4gSW1wbGVtZW50ZSBkb3MgbcOpdG9kb3MgZGlmZXJlbnRlcyBwYXJhIGdlbmVyYXIgbGEgdmFyaWFibGUgYWxlYXRvcmlhIFggcXVlIHRpZW5lIGxhIHByb2JhYmlsaWRhZCBkZSBtYXNhICRwX2osIGo9NSw2LC4uLiwgMTQkIGRvbmRlOgoKLy8gZnVuY3Rpb24gbWlzc2luZwoKMy4gSW1wbGVtZW50ZSB1biBtw6l0b2RvIHBhcmEgZ2VuZXJhciB2YWxvcmVzIGFsZWF0b3Jpb3MgcXVlIHNpZ3VlbiBsYSBkaXN0cmlidWNpw7NuIGRlc2NyaXRhIHBvciBsYSBmdW5jacOzbiBkZSBkZW5zaWRhZCBkZSBwcm9iYWJpbGlkYWQgZih4KT1leC8oZeKIkjEpIHBhcmEgMOKJpHjiiaQxLgoKYGBge3J9Cm4gPC0gMTAwMAoKCmBgYAoKCjQuIEltcGxlbWVudGUgZWwgbcOpdG9kbyBkZXNjcml0byBlbiBlbCBlamVtcGxvIDVGIGRlbCBsaWJybyBkZSBSb3NzLCBxdWUgZXN0w6EgYmFzYWRvIGVuIGVsIG3DqXRvZG8gZGVsIHJlY2hhem8sIHBhcmEgZ2VuZXJhciB1bmEgdmFyaWFibGUgYWxlYXRvcmlhIGNvbiBkaXN0cmlidWNpw7NuIG5vcm1hbCBhIHBhcnRpciBkZSB1bmEgZGlzdHJpYnVjacOzbiBleHBvbmVuY2lhbAoKNS4gVXNlIGVsIG3DqXRvZG8gZGVsIHJlY2hhem8gcGFyYSBlbmNvbnRyYXIgdW5hIGZvcm1hIGVmaWNpZW50ZSBkZSBnZW5lcmFyIHVuYSB2YXJpYWJsZSBhbGVhdG9yaWEgcXVlIHRlbmdhIGZ1bmNpw7NuIGRlIGRlbnNpZGFkIGRlIHByb2JhYmlsaWRhZCBmKHgpPTEyKDEreCll4oiSeCwwPHg8aW5mLiBPYnNlcnZlIHF1ZSBsYSBmdW5jacOzbiBlc3RhIGRlZmluaWRhIGVudHJlIDAgZSBpbmZpbml0by4=</div>
 
 
 
