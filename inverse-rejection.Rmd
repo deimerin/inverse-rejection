@@ -3,8 +3,7 @@ title: "Generación de variables aleatorias - Transformada inversa y Método del
 output: html_notebook
 ---
 
-1. Un par de dados balanceados serán lanzados de forma continua hasta que todos los posibles resultados 2,3, ... 12 hayan ocurrido al menos una vez. Desarrolle un estudio de simulación para estimar el número esperado de lanzamientos que es necesario realizar para que se cumpla la condición
-
+1 - Un par de dados balanceados serán lanzados de forma continua hasta que todos los posibles resultados 2,3, ... 12 hayan ocurrido al menos una vez. Desarrolle un estudio de simulación para estimar el número esperado de lanzamientos que es necesario realizar para que se cumpla la condición.
 
 ```{r}
 lanza_2dados <- function(){
@@ -40,17 +39,104 @@ paste("En promedio el numero esperado de lanzamientos que es necesario para que 
 
 ```
 
-2. Implemente dos métodos diferentes para generar la variable aleatoria X que tiene la probabilidad de masa $p_j, j=5,6,..., 14$ donde:
+2 - Implemente dos métodos diferentes para generar la variable aleatoria X que tiene la probabilidad de masa $p_j, j=5,6,..., 14$ donde:
 
-```{r}
+$p_{j} = 
+\begin{cases}
+  0.11 & \text{when $j$ is odd and $5$$\le$$j$$\le$$13$}\\
+  0.09 & \text{when $f$ is even and $6$$\le$$j$$\le$$14$}
+\end{cases}$
+
+A partir de la definicion del enunciado podemos reescribirlo de la siguiente manera
+
+$P\{X = j\} = 0.11$ para $j = \{5, 7, 9, 11, 13\}$
+
+$P\{X = j\} = 0.09$ para $j = \{6, 8, 10, 12, 14\}$
+
+usando el metodo de composicion tenemos que
+
+$P\{X = j\} = \alpha p_{j}^1 + (\alpha - 1) p_{j}^1$
+
+siendo 
+
+$p_{j}^1 = 5*0.11 = 0.55$
+
+$p_{j}^2 = 5*0.09 = 0.45$
+
+donde
+
+$p_{j}^1 = 0.2$ para $j = \{5, 7, 9, 11, 13\}$
+
+$p_{j}^2 = 0.2$ para $j = \{6, 8, 10, 12, 14\}$
+
+```{r p2}
+n <- 10000
+
+sample_p = vector(length = n)
+
+for (i in 1:n){
+  u1 <- runif(1)
+  u2 <- runif(1)
+  
+  if(u1 > 0.55){
+    
+    if(u2<=0.2) sample_p[i] = 6
+    else if(u2<=0.4) sample_p[i] = 8
+    else if(u2<=0.6) sample_p[i] = 10
+    else if(u2<=0.8) sample_p[i] = 12
+    else sample_p[i] = 14
+    
+  }
+  else{
+    if(u2<=0.2) sample_p[i] = 5
+    else if(u2<=0.4) sample_p[i] = 7
+    else if(u2<=0.6) sample_p[i] = 9
+    else if(u2<=0.8) sample_p[i] = 11
+    else sample_p[i] = 13
+    
+    
+  }
+  
+}
+
+#samples
+s_p1 <- sample_p[which(sample_p%%2==1)]
+s_p2 <- sample_p[which(sample_p%%2==0)]
+
+barplot(table(s_p1))
+barplot(table(s_p2))
+barplot(table(sample_p))
 
 ```
-// function missing
+Los diagramas de barras muestran que tanto $p_j^1$ como $p_j^2$ siguen una distribucion uniforme, la primera con valores de $\{5, 7, 9, 11, 13\}$ y la segunda con valores de $\{6, 8, 10, 12, 14\}$
 
 
-3. Implemente un método para generar valores aleatorios que siguen la distribución descrita por la función de densidad de probabilidad f(x)=ex/(e−1) para 0≤x≤1.
+3 - Implemente un método para generar valores aleatorios que siguen la distribución descrita por la función de densidad de probabilidad $f(x)=e^x/(e−1)$ para $0$$\le$$x$$\le$$1$.
 
-4. Implemente el método descrito en el ejemplo 5F del libro de Ross, que está basado en el método del rechazo, para generar una variable aleatoria con distribución normal a partir de una distribución exponencial
+
+Utilizando el metodo de la tranformada inversa con la funcion de densidad $f(x)$ obtenemos la funcion $F^{-1}(U)$
+
+$F(U) = (e^x - 1)/(e - 1)$
+
+$F^{-1}(U) = log(U(e - 1) + 1)$
+
+Con esta funcion generamos 10000 muestras que siguen la funcion de densidad dada.
+
+```{r}
+n <- 10000
+sample <- vector(length = n)
+
+for (i in 1:n){
+  u <-runif(1)
+  sample[i] <- log( u*(exp(1) - 1) + 1 )
+}
+
+hist(sample)
+
+```
+
+
+4 - Implemente el método descrito en el ejemplo 5F del libro de Ross, que está basado en el método del rechazo, para generar una variable aleatoria con distribución normal a partir de una distribución exponencial
 
 ```{r}
 
@@ -88,11 +174,9 @@ qplot(b)
 ```   
 A partir de la gráfica se evidencia que los valores generados se comportan como una distribución normal partiendo de una distribución exponencial  
 
-5. Use el método del rechazo para encontrar una forma eficiente de generar una variable aleatoria que tenga función de densidad de probabilidad f(x)=12(1+x)e−x,0<x<inf. Observe que la función esta definida entre 0 e infinito.
+5 - Use el método del rechazo para encontrar una forma eficiente de generar una variable aleatoria que tenga función de densidad de probabilidad $f(x)=$\(\frac{1}{2}\)$(1+x)e^{−x}$, $0<x<inf$. Observe que la función esta definida entre 0 e infinito.
 
+```{r}
 
-
-
-
-
+```
 
