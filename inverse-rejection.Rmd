@@ -1,6 +1,7 @@
 ---
 title: "Generación de variables aleatorias - Transformada inversa y Método del rechazo"
 output: html_notebook
+author: "Deimer Ivan Castillo Caceres, Iveth Medina, Rances Elith Rodriguez Lara"
 ---
 
 1 - Un par de dados balanceados serán lanzados de forma continua hasta que todos los posibles resultados 2,3, ... 12 hayan ocurrido al menos una vez. Desarrolle un estudio de simulación para estimar el número esperado de lanzamientos que es necesario realizar para que se cumpla la condición.
