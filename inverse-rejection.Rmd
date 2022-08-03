@@ -25,4 +25,40 @@ n <- 1000
 
 4. Implemente el método descrito en el ejemplo 5F del libro de Ross, que está basado en el método del rechazo, para generar una variable aleatoria con distribución normal a partir de una distribución exponencial
 
+```{r}
+
+library(tidyverse)
+
+sim_exp_beta <- function(beta, n = 1000) {
+  -beta * log(runif(n))
+}
+
+sim_exp<- function(n = 1000) {
+  -log(runif(n))
+}
+
+cociente <- function(x){
+  exp((x-1)^(2) / 2)
+}
+
+simula_normal <- function(){
+  c <- sqrt(2*exp(1)/pi)
+  x <- sim_exp(n = 1)
+  u <- runif(1)
+  while (u > cociente(x)/c) {
+    u <- runif(1)
+    x <- sim_exp_beta(1, n = 1)
+  }
+  z <- abs(x)
+  if (u<=0.5) {Z <- z}
+  else {Z <- -z} 
+}
+
+## simulacion
+
+b<- rerun(1000, simula_normal()) %>% flatten_dbl()
+qplot(b)   
+```   
+
+
 5. Use el método del rechazo para encontrar una forma eficiente de generar una variable aleatoria que tenga función de densidad de probabilidad f(x)=12(1+x)e−x,0<x<inf. Observe que la función esta definida entre 0 e infinito.
