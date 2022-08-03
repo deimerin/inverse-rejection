@@ -28,7 +28,7 @@ for(i in 1:10000){
     valor<- lanza_2dados()
     
     if(is.element(valor,dados)){
-      v<-setdiff(dados, valor)
+      dados<-setdiff(dados, valor)
     }
   }
   
@@ -42,7 +42,9 @@ paste("En promedio el numero esperado de lanzamientos que es necesario para que 
 
 2. Implemente dos métodos diferentes para generar la variable aleatoria X que tiene la probabilidad de masa $p_j, j=5,6,..., 14$ donde:
 
+```{r}
 
+```
 // function missing
 
 
@@ -84,7 +86,7 @@ simula_normal <- function(){
 b<- rerun(1000, simula_normal()) %>% flatten_dbl()
 qplot(b)   
 ```   
-A partir de la gráfica los valores generados se comportan como una distribución normal partiendo de una distribución exponencial  
+A partir de la gráfica se evidencia que los valores generados se comportan como una distribución normal partiendo de una distribución exponencial  
 
 5. Use el método del rechazo para encontrar una forma eficiente de generar una variable aleatoria que tenga función de densidad de probabilidad f(x)=12(1+x)e−x,0<x<inf. Observe que la función esta definida entre 0 e infinito.
 
